@@ -126,4 +126,6 @@ nextButton.addEventListener("click", () => {
 
 });
 
-loadPDF();
+window.addEventListener("load", () => {
+  loadPDF();
+});
