@@ -66,6 +66,26 @@
         </div>
       </div>
       <div class="hero__visual">
+        <div class="flipbook-container">
+
+          <div class="flipbook-header">
+            <h2>Buku Profil Kampung ProKlim Lestari</h2>
+            <p>
+              Kenali berbagai program dan kegiatan Kampung ProKlim Lestari RW 03
+            </p>
+          </div>
+
+          <div class="flipbook-wrapper">
+            <div id="flipbook"></div>
+          </div>
+
+          <div class="flipbook-controls">
+            <button id="prevPage">← Sebelumnya</button>
+            <span id="pageNumber">Halaman 1</span>
+            <button id="nextPage">Berikutnya →</button>
+          </div>
+
+        </div>
         <div class="hero__panel">
           <span class="hero__tape" aria-hidden="true"></span>
           <img
@@ -300,5 +320,14 @@
 </footer>
 
 <script src="js/main.js" defer></script>
+<!-- PDF.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs"
+        type="module"></script>
+
+<!-- StPageFlip -->
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+
+<!-- Script website -->
+<script src="script.js"></script>
 </body>
 </html>
