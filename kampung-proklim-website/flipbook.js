@@ -1,5 +1,9 @@
 const pdfUrl = "./pdf/buku-profil-proklim-lestari.pdf";
 
+// PDF.js worker
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
 let pdfDoc = null;
 let pageFlip = null;
 
