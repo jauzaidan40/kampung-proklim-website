@@ -10,7 +10,12 @@ const nextButton = document.getElementById("nextPage");
 
 async function loadPDF() {
   try {
-    const loadingTask = pdfjsLib.getDocument(pdfUrl);
+    console.log("Memuat PDF...");
+
+    const loadingTask = pdfjsLib.getDocument({
+      url: pdfUrl
+    });
+
     pdfDoc = await loadingTask.promise;
 
     console.log(`PDF berhasil dimuat: ${pdfDoc.numPages} halaman`);
@@ -23,9 +28,12 @@ async function loadPDF() {
 }
 
 async function renderPages() {
+
   const pages = [];
 
   for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+
+    console.log(`Merender halaman ${pageNum}...`);
 
     const page = await pdfDoc.getPage(pageNum);
 
@@ -34,6 +42,7 @@ async function renderPages() {
     });
 
     const canvas = document.createElement("canvas");
+
     const context = canvas.getContext("2d");
 
     canvas.width = viewport.width;
@@ -53,6 +62,7 @@ async function renderPages() {
 function createFlipbook(pages) {
 
   pageFlip = new St.PageFlip(flipbook, {
+
     width: 500,
     height: 700,
 
@@ -73,35 +83,43 @@ function createFlipbook(pages) {
     flippingTime: 700
   });
 
-  pageFlip.loadFromHTML(
-    pages.map((canvas) => {
-      const pageElement = document.createElement("div");
+  const pageElements = pages.map((canvas) => {
 
-      pageElement.classList.add("page");
+    const pageElement = document.createElement("div");
 
-      pageElement.appendChild(canvas);
+    pageElement.classList.add("page");
 
-      return pageElement;
-    })
-  );
+    pageElement.appendChild(canvas);
+
+    return pageElement;
+
+  });
+
+  pageFlip.loadFromHTML(pageElements);
 
   pageFlip.on("flip", (event) => {
+
     const currentPage = event.data + 1;
 
     pageNumber.textContent = `Halaman ${currentPage}`;
+
   });
 }
 
 prevButton.addEventListener("click", () => {
+
   if (pageFlip) {
     pageFlip.flipPrev();
   }
+
 });
 
 nextButton.addEventListener("click", () => {
+
   if (pageFlip) {
     pageFlip.flipNext();
   }
+
 });
 
 loadPDF();
